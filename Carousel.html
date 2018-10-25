@@ -160,7 +160,7 @@
         Carousel.prototype.initEle = function (object) {
 
             var ele = object.ele
-
+            
             var banner = document.querySelector(ele);
 
             let [imageBox, prev, next, pointBox] = [...banner.children];
@@ -275,13 +275,12 @@
         // 移动事件
         Carousel.prototype.move = function () {
 
-            var oli = this.oli
-            var imageBox = this.imageBox
-            var width = this.width
-            var index = this.index
 
-            var event = object.type?'mouseenter':'click';
+            let {oli,imageBox,width,index} = this
+
+            var event = object.type ? 'mouseenter' : 'click';
             
+            var that = this
             for (let i = 0; i < oli.length; i++) {
                 oli[i].inde = i;
                 oli[i].addEventListener(event, function () {
@@ -295,7 +294,7 @@
                     imageBox.style.transform = 'translateX(' + (-[this.inde + 1] * width) + 'px)';
 
                     // 传给index
-                    carousel.index = [this.inde + 1]
+                   that.index = [this.inde + 1]
                 }, false)
             }
         }
@@ -350,7 +349,7 @@
             type:'enter'
         }
         
-        var carousel = new Carousel(object);
+        new Carousel(object);
 
     </script>
 
